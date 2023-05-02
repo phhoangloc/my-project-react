@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Grid } from '@mui/material'
+import { Header } from './layout/header';
+import { Body } from './layout/body';
+import { Footer } from './layout/footer';
+import store from './redux/store';
+import { useState } from 'react';
+import { Loading } from './item/loading';
 function App() {
+
+  const link = window.location.pathname
+
+  const [isSearchHidden, setIsSearchHidden] = useState(store.getState().search)
+
+  const update = () => {
+    store.subscribe(() => setIsSearchHidden(store.getState().search))
+  }
+
+  update()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grid>
+      <Header />
+      {isSearchHidden || link !== "/" ? <Loading /> : null}
+      {isSearchHidden || link !== "/" ? <Body /> : null}
+      {isSearchHidden || link !== "/" ? <Footer /> : null}
+    </Grid>
+
   );
 }
 
