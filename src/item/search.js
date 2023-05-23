@@ -1,68 +1,65 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid } from '@mui/material'
-import { useState } from 'react'
-import { Input } from '../component/input'
-import color from '../asset/color'
-import store from '../redux/store'
-export const Search = (props) => {
-    const { onFocus, onBlur } = props
-    const [search, setSearch] = useState("")
-    const searchStyle = {
-        width: "100%",
-        height: "calc(100vh - 50px)",
-        overflow: "hidden",
-        display: "flex",
+import SearchIcon from '@mui/icons-material/Search';
+import CloseIcon from '@mui/icons-material/Close';
+import store from '../redux/store';
+import { setSearch } from '../redux/reducer/SearchReducer';
+import color from '../asset/color';
+export const Search = () => {
+
+    const [display, setDisplay] = useState(store.getState().search.display)
+    const update = () => {
+        store.subscribe(() => setDisplay(store.getState().search.display))
+    }
+    update()
+    const search = {
+        position: "fixed",
+        width: "100vw",
+        height: "100vh",
+        top: 0,
+        left: 0,
+        background: color.color2,
+        textAlign: "center",
+        display: display,
         flexDirection: "column",
         justifyContent: "center",
-        textAlign: "center",
-        transition: "all 1s",
+        overflow: "hidden",
+        color: color.color4,
+        zIndex: 99,
         h1: {
-            margin: "0",
+            margin: "10px"
+        },
+        input: {
+            width: "90%",
+            maxWidth: "575px",
+            height: "50px",
+            borderRadius: "25px",
+            margin: "0 auto",
+            fontSize: "1.5rem",
+            boxSizing: "border-box",
+            paddingLeft: "25px"
+        },
+        svg: {
+            margin: "5px",
+            widht: "30px",
+            height: "30px",
+            cursor: "pointer",
+            padding: "5px",
+            background: "whitesmoke",
             color: color.color1,
         },
-        h2: {
-            margin: "0",
-            color: color.color2
-        },
-        inputBox: {
-            width: "100%",
-            input: {
-                height: "40px",
-                width: "80%",
-                maxWidth: "375px",
-                margin: "10px auto",
-                borderRadius: "25px",
-                padding: "0 25px",
-                fontSize: "1.2rem",
-                boxSizing: "border-box",
-                border: "2px solid",
-                color: color.color6,
-                transition: "all 0.5s",
-                ":focus": {
-                    outline: "none",
-                    transform: "scale(1.2)"
-                }
-            }
-        },
     }
-    const getSearch = () => {
-        window.location.href = "https://www.google.com/search?q=" + search
+    const closeSearch = () => {
+        store.dispatch(setSearch({ display: "none" }))
     }
-
-    const link = window.location.pathname
-
     return (
-        <Grid sx={[searchStyle, store.getState().search || link !== "/" ? { height: 0 } : null]}>
-            <h1>Lockheart</h1>
-            <h2>hello! can I help you today</h2>
-            <Input
-                sx={searchStyle.inputBox}
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                enterClick={() => getSearch()}
-                onFocus={onFocus}
-                onBlur={onBlur}
-            />
+        <Grid sx={search}>
+            <h1>Search</h1>
+            <input type="text"></input>
+            <Grid>
+                <SearchIcon />
+                <CloseIcon onClick={() => closeSearch()} />
+            </Grid>
         </Grid>
     )
 }

@@ -1,9 +1,17 @@
-import Api from './Api'
+import Api from "./Api"
 const url = "http://localhost:4000/"
-const Login = (body) => {
-    return Api.post(url + "login", body)
+
+const getCoverItem = () => {
+    return Api.get(url + '?sortbyid=-1&limit=3')
 }
 
-const GeneralApi = { Login }
+const getTopItem = () => {
+    return Api.get(url)
+}
+
+const GeneralApi = {
+    getCoverItem,
+    getTopItem
+}
 
 export default GeneralApi

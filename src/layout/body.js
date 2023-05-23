@@ -1,37 +1,30 @@
 import React from 'react'
+import { Grid } from '@mui/material'
 import { Home } from './pages/home'
-import { Contact } from './pages/contact'
-import { Route, Routes } from 'react-router-dom'
+import { Routes, Route } from "react-router-dom"
 import { About } from './pages/about'
-import { Login } from './pages/login'
+import { BookDetail } from './pages/detail/bookDetail'
 export const Body = () => {
-
-    const data = [
+    const PageList = [
         {
-            path: "/login",
-            component: <Login />
-        },
-        {
-            path: "/contact",
-            component: <Contact />
+            path: "/book/:slug",
+            component: <BookDetail />
         },
         {
             path: "/about",
             component: <About />
         },
         {
-            path: "/home",
+            path: "/",
             component: <Home />
-        }
+        },
+
     ]
 
-    const RoutesReturn = data.map((item, index) =>
-        <Route exact key={index} path={item.path} element={item.component} />
-    )
-
+    const Page = PageList && PageList.map((item, index) => <Route key={index} path={item.path} element={item.component} />)
     return (
         <Routes>
-            {RoutesReturn}
+            {Page}
         </Routes>
     )
 }

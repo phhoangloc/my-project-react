@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import SearchReducer from "./reducer/search.Reducer";
-import LoadingReducer from "./reducer/loading.Reducer";
+import MenuReducer from "./reducer/MenuReducer"
+import SearchReducer from "./reducer/SearchReducer"
+
 const store = configureStore({
     reducer: {
+        menu: MenuReducer.reducer,
         search: SearchReducer.reducer,
-        loading: LoadingReducer.reducer,
     }
 })
 

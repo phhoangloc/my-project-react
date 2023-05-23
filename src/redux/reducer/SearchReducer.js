@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const SearchReducer = createSlice({
     name: "Search",
-    initialState: false,
+    initialState: { display: "none" },
     reducers: {
-        setSearchHidden: {
+        setSearch: {
             reducer: (state, action) => {
                 return (state = action.payload)
             },
@@ -18,6 +18,6 @@ const SearchReducer = createSlice({
 })
 
 export const { actions, reducer } = SearchReducer
-export const { setSearchHidden } = actions;
+export const { setSearch } = actions;
 
 export default SearchReducer

@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-const LoadingReducer = createSlice({
-    name: "Loading",
-    initialState: { display: "none", message: "asdasd" },
+const MenuReducer = createSlice({
+    name: "Menu",
+    initialState: { width: 0 },
     reducers: {
-        setLoading: {
+        setMenu: {
             reducer: (state, action) => {
                 return (state = action.payload)
             },
@@ -17,7 +17,7 @@ const LoadingReducer = createSlice({
     }
 })
 
-export const { actions, reducer } = LoadingReducer
-export const { setLoading } = actions;
+export const { actions, reducer } = MenuReducer
+export const { setMenu } = actions;
 
-export default LoadingReducer
+export default MenuReducer
