@@ -7,6 +7,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import LaunchIcon from '@mui/icons-material/Launch';
 import { useNavigate } from 'react-router-dom'
+const url = process.env.REACT_APP_URL
 
 export const Topbook = () => {
 
@@ -87,7 +88,7 @@ export const Topbook = () => {
             key={index}
             sx={topbook}
         >
-            <img src={"http://localhost:4000/img/bookcover/" + item.img} />
+            <img src={url + "img/bookcover/" + item.img} />
             <h3>{item.name}</h3>
             <h4>{item.author}</h4>
             <Icon i={item.slug} />

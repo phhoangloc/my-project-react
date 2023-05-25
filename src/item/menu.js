@@ -34,7 +34,8 @@ export const Menu = () => {
             right: 0,
             widht: "30px",
             height: "30px",
-            cursor: "pointer"
+            cursor: "pointer",
+            padding: "10px",
         },
         h1: {
             margin: "30px 0"
@@ -49,7 +50,32 @@ export const Menu = () => {
         a: {
             textDecoration: "none !important",
             color: "unset !important"
+        },
+        "@media (min-width:600px)": {
+            position: "relative",
+            display: " flex",
+            height: "40px",
+            width: "100%",
+            background: color.color1,
+            color: "white",
+            svg: {
+                display: "none",
+            },
+            h1: {
+                display: "none",
+            },
+            h2: {
+                lineHeight: "40px",
+                height: "40px",
+                fontSize: "1rem !important",
+                padding: "0 20px !important",
+                margin: 0,
+                ":active": {
+                    background: color.color2
+                }
+            }
         }
+
     }
 
     const closeMenu = () => {

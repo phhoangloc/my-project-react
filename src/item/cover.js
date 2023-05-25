@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import GeneralApi from '../api/generalApi'
 import { Grid } from '@mui/material'
 import color from '../asset/color'
+const url = process.env.REACT_APP_URL
+const REACT_LINK = process.env.REACT_APP_REACT_LINK
+
 export const Cover = () => {
 
     const [coverBook, setCoverBook] = useState()
@@ -18,7 +21,7 @@ export const Cover = () => {
 
     const cover = {
         BoxCover: {
-            background: color.background,
+            background: "linear-gradient(to bottom left,  white ," + color.color2 + ")",
             height: "50vw",
             maxHeight: "600px",
             width: "100%",
@@ -96,7 +99,7 @@ export const Cover = () => {
     setTimeout(() => changeCover(), 5000)
     const book =
         <Grid sx={cover.BoxCover.book}>
-            <img src={coverBook && "http://localhost:4000/img/bookcover/" + coverBook[i].img} />
+            <img src={coverBook && url + "img/bookcover/" + coverBook[i].img} />
         </Grid>
     const title =
         <Grid sx={cover.BoxCover.title}>
@@ -110,7 +113,7 @@ export const Cover = () => {
     return (
         <Grid sx={cover}>
             <Grid sx={cover.BoxCover}>
-                <img style={cover.BoxCover.background_cover} src={"http://localhost:3000/img/cover.png"} />
+                <img style={cover.BoxCover.background_cover} src={REACT_LINK + "/img/cover.png"} />
                 {book}
                 {title}
             </Grid>

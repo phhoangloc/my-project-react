@@ -6,7 +6,10 @@ export const Home = () => {
     return (
         <Grid>
             <Cover />
-            <Topbook />
+            <Grid sx={{ maxWidth: "1200px", margin: "auto" }}>
+                <h1>Book</h1>
+                <Topbook />
+            </Grid>
         </Grid>
     )
 }

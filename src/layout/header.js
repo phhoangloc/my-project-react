@@ -7,6 +7,7 @@ import store from '../redux/store';
 import { setMenu } from '../redux/reducer/MenuReducer';
 import { setSearch } from '../redux/reducer/SearchReducer';
 import color from '../asset/color';
+import { setAccountBox } from '../redux/reducer/AccountBox';
 export const Header = () => {
     const header = {
         height: "50px",
@@ -24,8 +25,12 @@ export const Header = () => {
                 margin: "10px 5px",
                 cursor: "pointer",
             },
+            svg3: {
+                "@media (min-width:600px)": {
+                    display: "none"
+                }
+            }
         }
-
     }
     const openMenu = () => {
         store.dispatch(setMenu({ width: "100%" }))
@@ -33,13 +38,17 @@ export const Header = () => {
     const openSearch = () => {
         store.dispatch(setSearch({ display: "flex" }))
     }
+
+    const openAccountBox = () => {
+        store.dispatch(store.getState().accountBox.opacity === "0" ? setAccountBox({ transform: "translateX(0%)", opacity: "1" }) : setAccountBox({ transform: "translateX(100%)", opacity: "0" }))
+    }
     return (
         <Grid sx={header} container>
             <h1>Lockheart</h1>
             <Grid sx={header.optionBox} >
+                <AccountBoxIcon onClick={() => openAccountBox()} />
                 <SearchIcon onClick={() => openSearch()} />
-                <AccountBoxIcon />
-                <MenuIcon onClick={() => openMenu()} />
+                <MenuIcon sx={header.optionBox.svg3} onClick={() => openMenu()} />
             </Grid>
         </Grid>
     )
